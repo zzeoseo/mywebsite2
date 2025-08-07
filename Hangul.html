@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Learn Hangul</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f7f5ff;
+      padding: 40px 20px;
+      color: #333333;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      color: #805ad5;
+      text-align: center;
+      user-select: none;
+    }
+
+    .letter-card {
+      background: #ede9fe;
+      padding: 20px 25px;
+      margin-bottom: 18px;
+      border-radius: 14px;
+      box-shadow: 0 4px 8px rgba(128, 90, 213, 0.2);
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.25s ease;
+      position: relative;
+    }
+
+    .letter-card:hover {
+      background: #d6bcfa;
+      box-shadow: 0 6px 12px rgba(128, 90, 213, 0.35);
+    }
+
+    .letter-symbol {
+      font-size: 3em;
+      font-weight: 900;
+      color: #6b46c1;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .letter-info {
+      font-size: 1.1em;
+      color: #4a4a4a;
+      line-height: 1.4;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      padding-left: 10px;
+    }
+
+    .letter-card.active .letter-info {
+      max-height: 200px;
+      margin-top: 10px;
+      padding-left: 0;
+    }
+
+    .letter-name {
+      font-weight: 700;
+      color: #553c9a;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-top: 40px;
+      text-decoration: none;
+      color: #805ad5;
+      font-weight: 700;
+      font-size: 1.1em;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+
+    a.back:hover {
+      color: #6b46c1;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📘 Learn Hangul (한글)</h1>
+
+  <div class="letter-card" tabindex="0">
+    <div class="letter-symbol">ㄱ</div>
+    <div class="letter-info">
+      <div class="letter-name">Giyeok (기역)</div>
+      Sounds like <strong>g/k</strong>, similar to the "g" in "go".
+    </div>
+  </div>
+
+  <div class="letter-card" tabindex="0">
+    <div class="letter-symbol">ㄴ</div>
+    <div class="letter-info">
+      <div class="letter-name">Nieun (니은)</div>
+      Sounds like <strong>n</strong>, similar to the "n" in "no".
+    </div>
+  </div>
+
+  <div class="letter-card" tabindex="0">
+    <div class="letter-symbol">ㄷ</div>
+    <div class="letter-info">
+      <div class="letter-name">Digeut (디귿)</div>
+      Sounds like <strong>d/t</strong>, like the "d" in "dog".
+    </div>
+  </div>
+
+  <div class="letter-card" tabindex="0">
+    <div class="letter-symbol">ㅏ</div>
+    <div class="letter-info">
+      <div class="letter-name">A (아)</div>
+      Pronounced like the "a" in "car".
+    </div>
+  </div>
+
+  <div class="letter-card" tabindex="0">
+    <div class="letter-symbol">ㅗ</div>
+    <div class="letter-info">
+      <div class="letter-name">O (오)</div>
+      Pronounced like the "o" in "so".
+    </div>
+  </div>
+
+  <div class="letter-card" tabindex="0">
+    <div class="letter-symbol">ㅜ</div>
+    <div class="letter-info">
+      <div class="letter-name">U (우)</div>
+      Pronounced like the "oo" in "boot".
+    </div>
+  </div>
+
+  <div class="letter-card" tabindex="0">
+    <div class="letter-symbol">가</div>
+    <div class="letter-info">
+      <div class="letter-name">Ga (가)</div>
+      A basic syllable combining <strong>ㄱ + ㅏ</strong>, sounds like "gah".
+    </div>
+  </div>
+
+  <div class="letter-card" tabindex="0">
+    <div class="letter-symbol">나</div>
+    <div class="letter-info">
+      <div class="letter-name">Na (나)</div>
+      A basic syllable combining <strong>ㄴ + ㅏ</strong>, sounds like "nah".
+    </div>
+  </div>
+
+  <div class="letter-card" tabindex="0">
+    <div class="letter-symbol">다</div>
+    <div class="letter-info">
+      <div class="letter-name">Da (다)</div>
+      A basic syllable combining <strong>ㄷ + ㅏ</strong>, sounds like "dah".
+    </div>
+  </div>
+
+  <a class="back" href="index.html">← Back to Homepage</a>
+
+  <script>
+    const cards = document.querySelectorAll('.letter-card');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+      // Allow keyboard accessibility
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.classList.toggle('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

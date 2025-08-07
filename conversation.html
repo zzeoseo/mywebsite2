@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interactive Korean Conversation Practice</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f7f5ff;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      color: #4a4a4a;
+    }
+
+    h1 {
+      text-align: center;
+      color: #805ad5;
+      font-weight: 700;
+      font-size: 2.5em;
+      user-select: none;
+      margin-bottom: 30px;
+    }
+
+    .chat-box {
+      background: white;
+      border-radius: 15px;
+      padding: 25px 30px;
+      box-shadow: 0 6px 15px rgba(128, 90, 213, 0.15);
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      overflow-y: auto;
+      max-height: 500px;
+    }
+
+    .message {
+      padding: 12px 18px;
+      border-radius: 18px;
+      max-width: 70%;
+      font-weight: 600;
+      line-height: 1.4;
+      user-select: none;
+    }
+
+    .bot {
+      background-color: #d6d3f8;
+      color: #3c366b;
+      align-self: flex-start;
+      box-shadow: 0 2px 8px rgba(120, 106, 250, 0.3);
+    }
+
+    .user {
+      background-color: #805ad5;
+      color: white;
+      align-self: flex-end;
+      box-shadow: 0 2px 8px rgba(128, 90, 213, 0.5);
+    }
+
+    .options {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .options button {
+      background-color: #805ad5;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 25px;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      box-shadow: 0 2px 8px rgba(128, 90, 213, 0.4);
+    }
+
+    .options button:hover {
+      background-color: #6b46c1;
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    a {
+      color: #805ad5;
+      font-weight: 700;
+      text-decoration: none;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #6b46c1;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>🗨️ Korean Conversation Practice</h1>
+
+  <div class="chat-box" id="chatBox">
+    <div class="message bot">👧 안녕! 반가워요! (Hi! Nice to meet you!)</div>
+  </div>
+
+  <div class="options" id="options">
+    <button onclick="nextStep(1)">안녕! (Hi!)</button>
+    <button onclick="nextStep(2)">이름이 뭐예요? (What’s your name?)</button>
+  </div>
+
+  <div class="footer">
+    <a href="index.html">← Back to Homepage</a>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chatBox");
+    const options = document.getElementById("options");
+
+    function addMessage(role, text) {
+      const msg = document.createElement("div");
+      msg.className = "message " + role;
+      msg.innerText = (role === "user" ? "🙋 " : "👧 ") + text;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function nextStep(step) {
+      options.innerHTML = "";
+
+      switch(step) {
+        case 1:
+          addMessage("user", "안녕!");
+          setTimeout(() => {
+            addMessage("bot", "오늘 학교에서 뭐 했어요? (What did you do at school today?)");
+            options.innerHTML = `
+              <button onclick="nextStep(3)">친구를 만났어요. (I met a friend.)</button>
+              <button onclick="nextStep(4)">음악을 들었어요. (I listened to music.)</button>
+            `;
+          }, 600);
+          break;
+
+        case 2:
+          addMessage("user", "이름이 뭐예요?");
+          setTimeout(() => {
+            addMessage("bot", "저는 수진이에요! (I'm Sujin!)");
+            addMessage("bot", "오늘 학교에서 뭐 했어요? (What did you do at school today?)");
+            options.innerHTML = `
+              <button onclick="nextStep(3)">친구를 만났어요. (I met a friend.)</button>
+              <button onclick="nextStep(4)">음악을 들었어요. (I listened to music.)</button>
+            `;
+          }, 600);
+          break;
+
+        case 3:
+          addMessage("user", "친구를 만났어요.");
+          setTimeout(() => {
+            addMessage("bot", "좋아요! 어떤 친구예요? (Nice! What kind of friend?)");
+            options.innerHTML = `
+              <button onclick="nextStep(5)">귀여운 강아지를 키워요. (They have a cute puppy.)</button>
+              <button onclick="nextStep(6)">사과를 좋아해요. (They like apples.)</button>
+            `;
+          }, 600);
+          break;
+
+        case 4:
+          addMessage("user", "음악을 들었어요.");
+          setTimeout(() => {
+            addMessage("bot", "어떤 음악을 좋아해요? (What kind of music do you like?)");
+            options.innerHTML = `
+              <button onclick="nextStep(7)">사랑 노래를 좋아해요. (I like love songs.)</button>
+              <button onclick="nextStep(8)">하늘과 바다 노래요. (Songs about sky and sea.)</button>
+            `;
+          }, 600);
+          break;
+
+        case 5:
+          addMessage("user", "귀여운 강아지를 키워요.");
+          setTimeout(() => {
+            addMessage("bot", "와~ 정말 귀엽겠어요! (Wow~ Must be so cute!)");
+            endConversation();
+          }, 600);
+          break;
+
+        case 6:
+          addMessage("user", "사과를 좋아해요.");
+          setTimeout(() => {
+            addMessage("bot", "사과는 맛있죠! (Apples are yummy!)");
+            endConversation();
+          }, 600);
+          break;
+
+        case 7:
+          addMessage("user", "사랑 노래를 좋아해요.");
+          setTimeout(() => {
+            addMessage("bot", "로맨틱하네요! (That’s romantic!)");
+            endConversation();
+          }, 600);
+          break;
+
+        case 8:
+          addMessage("user", "하늘과 바다 노래요.");
+          setTimeout(() => {
+            addMessage("bot", "자연을 좋아하나 봐요! (You must love nature!)");
+            endConversation();
+          }, 600);
+          break;
+      }
+    }
+
+    function endConversation() {
+      setTimeout(() => {
+        addMessage("bot", "고마워요! 다음에 또 이야기해요~ (Thanks! Let’s talk again soon!)");
+      }, 1000);
+      options.innerHTML = `<button onclick="location.reload()">Start Over 🔄</button>`;
+    }
+  </script>
+</body>
+</html>
